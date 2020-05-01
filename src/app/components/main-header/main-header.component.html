@@ -1,0 +1,18 @@
+<div class="toolbar" role="banner" (dblclick)="toggleWindowMaximization()">
+  <table class="toolbar-table">
+    <tr>
+      <td class="toolbar-title"><span>Configurations</span></td>
+      <td class="toolbar-filter"><input class="grid-filter" type="text" matTooltip="Press ESC to clear." placeholder="Enter filter text..." (keyup)="changeGridSearchTextValue($event)" [(ngModel)]="gridSearchTextValue"></td>
+      <td class="toolbar-icons">
+        <div>
+          <mat-icon (click)="addConfiguration()" matTooltip="Add new configuration." >add</mat-icon >
+          <mat-icon (click)="refreshConfigurations()" matTooltip="Refresh all configurations from back-end service.">refresh</mat-icon>
+          <mat-icon (click)="minimizeWindow()" matTooltip="Minimize window.">remove</mat-icon>
+          <mat-icon (click)="closeWindow()" matTooltip="Close window.">close</mat-icon>
+        </div>
+      </td>
+    </tr>
+  </table>
+</div>
+
+

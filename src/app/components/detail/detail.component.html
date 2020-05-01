@@ -1,0 +1,23 @@
+<form class="detail-panel-form">
+  <mat-form-field appearance="outline" class="detail-panel-widget first-widget">
+    <mat-label>Owner</mat-label>
+    <input matInput placeholder="Enter the configuration owner..." [(ngModel)]="configuration.owner" [ngModelOptions]="{standalone: true}">
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="detail-panel-widget">
+    <mat-label>Key</mat-label>
+    <input matInput placeholder="Enter the configuration key..." [(ngModel)]="configuration.key" [ngModelOptions]="{standalone: true}">
+  </mat-form-field>
+  <mat-form-field appearance="outline" class="detail-panel-widget">
+    <mat-label>Value</mat-label>
+    <input matInput placeholder="Enter the configuration value..." [(ngModel)]="configuration.value" [ngModelOptions]="{standalone: true}">
+  </mat-form-field>
+</form>
+<button class="detail-button first-widget" type="button" mat-raised-button (click)="cancel()">Cancel</button>
+<button class="detail-button" type="button" mat-raised-button (click)="clear()" *ngIf="canClear()">Clear</button>
+<button class="detail-button" type="button" mat-raised-button (click)="save()" *ngIf="canSave()">Save</button>
+
+
+
+
+
+

@@ -1,0 +1,89 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~ag-grid-community/dist/styles/ag-grid.css"
+@import "~ag-grid-community/dist/styles/ag-theme-balham.css"
+@import "~@angular/material/prebuilt-themes/indigo-pink.css"
+
+$primary-color: #404040
+$panel-color: lightgrey
+$grid-row-selection-color: #bdc3c7
+$primary-font-family: -apple-system, Arial
+$primary-font-color: white
+$toolbar-title-font-size: 24px
+$toolbar-max-height: 60px
+$toolbar-font-weight: 600
+$toolbar-title-left-margin: 16px
+
+
+\:host
+  font-family: $primary-font-family
+  font-size: $toolbar-title-font-size
+
+// Toolbar style STARTS here
+
+div.toolbar
+  -webkit-app-region: drag // Allows dragging of the window
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  height: $toolbar-max-height
+  display: flex
+  align-items: center
+  background-color: $primary-color
+  color: $primary-font-color
+  font-weight: 600
+  table.toolbar-table
+    width: 100%
+    tr
+      td.toolbar-title
+        width: 160px
+      td.toolbar-filter
+        text-align: center
+      td.toolbar-icons
+        -webkit-app-region: no-drag  // Dragging of the window is permitted elsewhere except here.
+        width: 100px
+        text-align: right
+        mat-icon:hover
+          background: white
+          color: $primary-color
+
+  span
+    margin: 0 $toolbar-title-left-margin
+  input.grid-filter
+    width: 260px
+    height: 22px
+    margin-top: 2px
+    border-radius: 25px
+    border: 2px solid $primary-color
+    text-align: center
+    outline: none
+    color: $primary-color
+
+// Main grid style STARTS here
+
+div.content
+  display: flex
+  flex-direction: column
+  margin: $toolbar-max-height auto
+
+.ag-theme-balham
+  .ag-row-selected
+    background-color: $grid-row-selection-color
+    border-color: $grid-row-selection-color
+
+button.detail-button:hover
+  background: $primary-color
+  color: white
+
+button.context-menu-button.mat-menu-item:hover
+  background: $primary-color
+  color: white
+
+div.menu-trigger
+  visibility: hidden
+  position: fixed
+
+
+
+
+

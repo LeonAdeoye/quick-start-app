@@ -1,0 +1,18 @@
+<div class="menu-trigger" [matMenuTriggerFor]="menu" [style.left]="contextMenuPosition.x" [style.top]="contextMenuPosition.y"></div>
+<mat-menu #menu="matMenu">
+  <button class="context-menu-button" mat-menu-item (click)="addConfiguration()">Add configuration</button>
+  <button class="context-menu-button" mat-menu-item (click)="editConfiguration()">Edit configuration</button>
+  <button class="context-menu-button" mat-menu-item (click)="cloneConfiguration()">Clone configuration</button>
+  <button class="context-menu-button" mat-menu-item (click)="deleteConfiguration()">Delete configuration</button>
+  <button class="context-menu-button" mat-menu-item (click)="refreshConfiguration()">Refresh configuration</button>
+</mat-menu>
+<div class="content" role="main" style="height:740px">
+  <ag-grid-angular
+    style="width: 100%; height: 100%;"
+    class="ag-theme-balham"
+    [gridOptions]="configurationsGridOptions"
+    (gridReady)="onGridReady($event)"
+    rowSelection="single">
+  </ag-grid-angular>
+</div>
+

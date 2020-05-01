@@ -1,0 +1,9 @@
+<div>
+  <app-main-header></app-main-header>
+  <div class="detail-panel" *ngIf="isDetailPanelVisible()">
+    <app-detail [configuration]="configuration" (closePanelEventEmitter)="toggleDetailPanelVisibility()"></app-detail>
+  </div>
+  <div class="main-grid" [ngClass]="isDetailPanelVisible() ? 'detail-panel-displayed-above' : 'detail-panel-hidden-above'">
+    <app-main-grid></app-main-grid>
+  </div>
+</div>
