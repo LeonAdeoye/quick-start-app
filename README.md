@@ -26,3 +26,7 @@ rm README.md
 - [ ] Update the app's name in two the two locations of **app.component.spec.ts** file.
 
 - [ ] Update the app's name in the **./e2e/src/app.e2e-spec.ts** file.
+
+- [ ] Run **ng build** to make sure everything compiles.
+
+- [ ] Once you are ready to check-in then create the git repository with name **xxx-app**.
