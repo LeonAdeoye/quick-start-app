@@ -29,7 +29,7 @@
     "max-classes-per-file": false,
     "max-line-length": [
       true,
-      140
+      300
     ],
     "member-access": false,
     "member-ordering": [
@@ -38,8 +38,8 @@
         "order": [
           "static-field",
           "instance-field",
-          "static-method",
-          "instance-method"
+          "instance-method",
+          "static-method"
         ]
       }
     ],
@@ -65,11 +65,23 @@
       true,
       "as-needed"
     ],
+    "variable-name": {
+      "options": [
+        "ban-keywords",
+        "check-format",
+        "allow-leading-underscore",
+        "allow-pascal-case"
+      ]
+    },
     "object-literal-sort-keys": false,
     "ordered-imports": false,
     "quotemark": [
       true,
-      "single"
+      "double"
+    ],
+    "one-line": [
+      true,
+      "check-whitespace"
     ],
     "trailing-comma": false,
     "no-conflicting-lifecycle": true,
