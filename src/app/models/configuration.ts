@@ -1,5 +1,4 @@
 import { JsonConvert, JsonObject, JsonProperty, ValueCheckingMode } from "json2typescript";
-import { UtilityService } from "../services/utility.service";
 
 @JsonObject
 export class Configuration
@@ -22,7 +21,7 @@ export class Configuration
   @JsonProperty("lastUpdatedOn", String)
   private _lastUpdatedOn: string;
 
-  public constructor(owner?: string, key?:string, value?: string, lastUpdatedBy?: string, lastUpdatedOn?: string, id?: string)
+  public constructor(owner?: string, key?: string, value?: string, lastUpdatedBy?: string, lastUpdatedOn?: string, id?: string)
   {
     this._owner = owner || "";
     this._key = key || "";
@@ -34,7 +33,7 @@ export class Configuration
 
   public toString(): string
   {
-    return `{id: ${this.id}, owner: ${this.owner}, key: ${this.key}, value: ${this.value}, lastUpdatedBy: ${this.lastUpdatedBy}, lastUpdatedOn: ${this.lastUpdatedOn}}`
+    return `{id: ${this.id}, owner: ${this.owner}, key: ${this.key}, value: ${this.value}, lastUpdatedBy: ${this.lastUpdatedBy}, lastUpdatedOn: ${this.lastUpdatedOn}}`;
   }
 
   public toJSON(): any
@@ -43,10 +42,10 @@ export class Configuration
       id: this.id,
       owner: this.owner,
       key: this.key,
-      value:this.value,
+      value: this.value,
       lastUpdatedBy: this.lastUpdatedBy,
       lastUpdatedOn: this.lastUpdatedOn
-    }
+    };
   }
 
   public get id(): string
@@ -113,7 +112,7 @@ export class Configuration
   {
     try
     {
-      let jsonConverter: JsonConvert = new JsonConvert();
+      const jsonConverter: JsonConvert = new JsonConvert();
       jsonConverter.ignorePrimitiveChecks = false;
       jsonConverter.valueCheckingMode = ValueCheckingMode.DISALLOW_NULL;
       return jsonConverter.deserializeObject(jsonObject, Configuration);
@@ -128,7 +127,7 @@ export class Configuration
   {
     try
     {
-      let jsonConverter: JsonConvert = new JsonConvert();
+      const jsonConverter: JsonConvert = new JsonConvert();
       jsonConverter.ignorePrimitiveChecks = false;
       jsonConverter.valueCheckingMode = ValueCheckingMode.DISALLOW_NULL;
       return jsonConverter.deserializeArray(jsonObjectArray, Configuration);

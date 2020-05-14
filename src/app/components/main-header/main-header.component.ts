@@ -17,8 +17,8 @@ export class MainHeaderComponent implements OnInit
 
   constructor(private gridSearchService: GridSearchService, private configurationService: ConfigurationService, private loggingService: LoggingService)
   {
-    if ((<any>window).require)
-      this.ipcRenderer = (<any>window).require('electron').ipcRenderer;
+    if ((window as any).require)
+      this.ipcRenderer = (window as any).require('electron').ipcRenderer;
     else
       this.log("Unable to create IPC renderer in Main Header component.", LogLevel.DEBUG);
   }

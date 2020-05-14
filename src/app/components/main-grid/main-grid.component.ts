@@ -23,7 +23,7 @@ export class MainGridComponent implements OnInit, OnDestroy
   constructor(private loggingService: LoggingService, private configurationService: ConfigurationService,
               private gridSearchService: GridSearchService, private usageService: UsageService)
   {
-    this.configurationsGridOptions = <GridOptions> {};
+    this.configurationsGridOptions = {} as GridOptions;
     this.configurationsGridOptions.columnDefs = this.getColumnsDefinitions();
     this.configurationsGridOptions.getContextMenuItems = (params) => this.getDefaultContextMenuItems(params);
     this.configurationsGridOptions.getRowNodeId = (row) =>
@@ -38,7 +38,7 @@ export class MainGridComponent implements OnInit, OnDestroy
       if(this.trigger && this.trigger.menuOpen)
         this.trigger.closeMenu();
 
-      let mouseEvent = params.event as MouseEvent;
+      const mouseEvent = params.event as MouseEvent;
       if(this.trigger && this.trigger.menuClosed && mouseEvent && mouseEvent.clientX && mouseEvent.clientY)
       {
         this.contextMenuPosition.x = `${mouseEvent.clientX}px`;
@@ -70,7 +70,7 @@ export class MainGridComponent implements OnInit, OnDestroy
     this.loggingService.log("MainGridComponent", message, logLevel);
   }
 
-  public getSelectedConfiguration() : Configuration
+  public getSelectedConfiguration(): Configuration
   {
     if(this.configurationsGridOptions.api && this.configurationsGridOptions.api.getSelectedRows().length > 0)
       return this.configurationsGridOptions.api.getSelectedRows()[0] as Configuration;
@@ -139,8 +139,8 @@ export class MainGridComponent implements OnInit, OnDestroy
         width: 150,
         valueGetter: (params) =>
         {
-          let localDateTimeStamp = new LocalDateTimestamp();
-          let timestamp = new Number((params.data as Configuration).lastUpdatedOn);
+          const localDateTimeStamp = new LocalDateTimestamp();
+          const timestamp = new Number((params.data as Configuration).lastUpdatedOn);
           return localDateTimeStamp.transform(timestamp.valueOf());
         }
       }
@@ -149,15 +149,15 @@ export class MainGridComponent implements OnInit, OnDestroy
 
   private refreshGrid()
   {
-    let itemsToUpdate = [];
-    let itemsToRemove = [];
-    let itemsToAdd = [];
+    const itemsToUpdate = [];
+    const itemsToRemove = [];
+    const itemsToAdd = [];
 
-    let configurations = this.configurationService.getAllConfigurations();
+    const configurations = this.configurationService.getAllConfigurations();
     for(let index = 0; index < configurations.length; ++index)
     {
-      let configuration = configurations[index];
-      let configurationUpdateRowNode = this.configurationsGridOptions.api.getRowNode(configuration.id);
+      const configuration = configurations[index];
+      const configurationUpdateRowNode = this.configurationsGridOptions.api.getRowNode(configuration.id);
 
       if(configurationUpdateRowNode)
         itemsToUpdate.push(configuration);
@@ -178,7 +178,7 @@ export class MainGridComponent implements OnInit, OnDestroy
       }
 
       if(!foundMatchingRow)
-        itemsToRemove.push(currentRow.data)
+        itemsToRemove.push(currentRow.data);
     });
 
     this.configurationsGridOptions.api.updateRowData({remove: itemsToRemove});
@@ -206,14 +206,14 @@ export class MainGridComponent implements OnInit, OnDestroy
 
   public editConfiguration(): void
   {
-    let selectedConfiguration: Configuration = this.getSelectedConfiguration();
+    const selectedConfiguration: Configuration = this.getSelectedConfiguration();
     if(selectedConfiguration)
       this.configurationService.editConfigurationSubject.next(selectedConfiguration);
   }
 
   public deleteConfiguration(): void
   {
-    let selectedConfiguration: Configuration = this.getSelectedConfiguration();
+    const selectedConfiguration: Configuration = this.getSelectedConfiguration();
     if(selectedConfiguration)
       this.configurationService.deleteConfiguration(selectedConfiguration.id);
     this.usageService.saveUsage("deleted configuration");
@@ -226,7 +226,7 @@ export class MainGridComponent implements OnInit, OnDestroy
 
   public cloneConfiguration(): void
   {
-    let selectedConfiguration: Configuration = this.getSelectedConfiguration();
+    const selectedConfiguration: Configuration = this.getSelectedConfiguration();
     if(selectedConfiguration)
       this.configurationService.cloneConfigurationSubject.next(selectedConfiguration);
   }
