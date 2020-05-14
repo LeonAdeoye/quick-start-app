@@ -18,13 +18,14 @@ export class BootstrapService
   {
     this.configurationService.setCurrentUser(Constants.DEFAULT_USER_NAME);
     loggingService.initialize(Constants.APP_NAME, this.configurationService.getCurrentUser(), Constants.MAX_LOG_SIZE, LogLevel.DEBUG);
-    this.usageService.usage("launched configuration app");
+    // TODO update name of app
+    this.usageService.saveUsage("launched quick-start app");
 
-    if ((<any>window).require)
+    if ((window as any).require)
     {
       try
       {
-        this.ipcRenderer = (<any>window).require('electron').ipcRenderer;
+        this.ipcRenderer = (window as any).require('electron').ipcRenderer;
         this.log("Successfully created IPC renderer in Bootstrap service. Service is now ready to receive signals.", LogLevel.DEBUG);
 
         // This listener is invoked only ONCE after which it is removed.

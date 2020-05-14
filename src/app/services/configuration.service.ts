@@ -39,9 +39,9 @@ export class ConfigurationService
     this.loggingService.log("ConfigurationService", message, logLevel);
   }
 
-  public loadAllConfigurations() : void
+  public loadAllConfigurations(): void
   {
-    let message = new Message(`${Constants.CONFIGURATION_SERVICE_URL_BASE}/configurations`, null, MessageTransport.HTTP, MessageMethod.GET);
+    const message = new Message(`${Constants.CONFIGURATION_SERVICE_URL_BASE}/configurations`, null, MessageTransport.HTTP, MessageMethod.GET);
     this.messageService.send(message).subscribe((configurations) =>
     {
         try
@@ -70,7 +70,7 @@ export class ConfigurationService
 
   public deleteConfiguration(configurationId: string): void
   {
-    let message = new Message(`${Constants.CONFIGURATION_SERVICE_URL_BASE}/configuration?id=${configurationId}`, null, MessageTransport.HTTP, MessageMethod.DELETE);
+    const message = new Message(`${Constants.CONFIGURATION_SERVICE_URL_BASE}/configuration?id=${configurationId}`, null, MessageTransport.HTTP, MessageMethod.DELETE);
     this.messageService.send(message).subscribe(
       (result) =>
       {
@@ -91,7 +91,7 @@ export class ConfigurationService
     configuration.lastUpdatedOn = UtilityService.getCurrentTimestamp();
 
     this.log(`Saving ${configuration}`, LogLevel.DEBUG);
-    let message = new Message(`${Constants.CONFIGURATION_SERVICE_URL_BASE}/configuration`, configuration.toJSON(), MessageTransport.HTTP, UtilityService.isNullOrEmptyOrBlankOrUndefined(configuration.id) ? MessageMethod.POST : MessageMethod.PUT);
+    const message = new Message(`${Constants.CONFIGURATION_SERVICE_URL_BASE}/configuration`, configuration.toJSON(), MessageTransport.HTTP, UtilityService.isNullOrEmptyOrBlankOrUndefined(configuration.id) ? MessageMethod.POST : MessageMethod.PUT);
 
     this.messageService.send(message).subscribe(
       (result) =>

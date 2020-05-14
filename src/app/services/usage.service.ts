@@ -21,9 +21,9 @@ export class UsageService
     this.loggingService.log("UsageService", message, logLevel);
   }
 
-  public usage(action: String): void
+  public saveUsage(action: string): void
   {
-    let url: string = this.configurationService.getConfigurationValue('system', 'users-service.url', 'http://localhost:20003/usage');
+    let url: string = this.configurationService.getConfigurationValue('system', 'users-service.url', 'http://localhost:20003/saveUsage');
     url = `${url}?app=${Constants.APP_NAME}&user=${this.configurationService.getCurrentUser()}&action=${action}`;
     this.messageService.send(new Message(url, null, MessageTransport.HTTP, MessageMethod.POST)).subscribe(
       (result) =>

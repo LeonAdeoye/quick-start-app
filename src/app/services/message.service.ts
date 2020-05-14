@@ -18,7 +18,7 @@ export class MessageService
     this.loggingService.log("MessageService", message, logLevel);
   }
 
-  public send(message: Message) : any
+  public send(message: Message): any
   {
     switch(message.getTransport())
     {

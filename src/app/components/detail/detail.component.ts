@@ -38,7 +38,7 @@ export class DetailComponent implements OnInit
   public save(): void
   {
     this.configurationService.saveConfiguration(this.configuration);
-    this.usageService.usage("saved configuration");
+    this.usageService.saveUsage("saved configuration");
     this.closePanelEventEmitter.emit();
   }
 

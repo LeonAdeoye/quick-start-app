@@ -10,9 +10,9 @@ export class LoggingService
 {
   private loggerMaxSize: number = Constants.MAX_LOG_SIZE;
   private loggerDefaultLevel: LogLevel = LogLevel.DEBUG;
-  private loggerURL: string = "http://localhost:20002/log";
+  private loggerURL = "http://localhost:20002/log";
   private logger: any;
-  private loggerUserId: string = "";
+  private loggerUserId = "";
 
   constructor()
   {
@@ -25,7 +25,7 @@ export class LoggingService
     this.loggerUserId = loggerUserId;
     this.loggerDefaultLevel = loggerDefaultLogLevel;
     this.logger = log4JavaScript.getLogger(loggerApp);
-    let appender = new log4JavaScript.AjaxAppender(this.loggerURL);
+    const appender = new log4JavaScript.AjaxAppender(this.loggerURL);
     appender.addHeader('Content-Type', 'application/x-www-form-urlencoded');
     this.logger.addAppender(appender);
   }
