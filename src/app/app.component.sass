@@ -3,10 +3,10 @@
 // Add app component styling here that is specific to this app
 
 div.main-grid.detail-panel-hidden-above
-  margin-top: $toolbar-max-height
+  margin-top: ($toolbar-max-height + $tab-height - 3)
 
 div.main-grid.detail-panel-displayed-above
-  margin-top: -1 * $toolbar-max-height
+  margin-top: -1 * ($toolbar-max-height + $tab-height)
 
 div.detail-panel
   margin-top: $toolbar-max-height

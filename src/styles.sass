@@ -12,7 +12,9 @@ $toolbar-title-font-size: 24px
 $toolbar-max-height: 60px
 $toolbar-font-weight: 600
 $toolbar-title-left-margin: 16px
-
+$tab-height: 35px
+$tab-button-width: 90px
+$tab-view-margin-top: 92px
 
 \:host
   font-family: $primary-font-family
@@ -39,6 +41,7 @@ div.toolbar
         width: 160px
       td.toolbar-filter
         text-align: center
+        font-size: small
       td.toolbar-icons
         -webkit-app-region: no-drag  // Dragging of the window is permitted elsewhere except here.
         width: 100px
@@ -82,6 +85,37 @@ button.context-menu-button.mat-menu-item:hover
 div.menu-trigger
   visibility: hidden
   position: fixed
+
+// Tab styling starts here
+
+.tab-button
+  font-size: 8pt
+  width: $tab-button-width
+  height: $tab-height
+  padding: 2px 12px
+  background: $primary-color
+  margin-left: 2px
+  color: white
+  border-color: lightgray
+
+li.tab-button:hover
+  background-color: black
+  color: white
+
+li.tab-button.active
+  background-color: #868686
+  color: white
+
+div.tab-background
+  background: $primary-color
+  position: absolute
+  top: $toolbar-max-height
+  left: 0
+  right: 0
+  height: $tab-height
+
+div.tab-view
+  margin-top: $tab-view-margin-top
 
 
 

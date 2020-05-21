@@ -8,6 +8,7 @@ import { Configuration } from "../../models/configuration";
 import { LocalDateTimestamp } from "../../pipes/local-date-timestamp.pipe";
 import { MatMenuTrigger } from "@angular/material/menu";
 import { UsageService } from "../../services/usage.service";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: 'app-main-grid',
@@ -19,6 +20,9 @@ export class MainGridComponent implements OnInit, OnDestroy
   public configurationsGridOptions: GridOptions;
   @ViewChild(MatMenuTrigger) trigger: MatMenuTrigger;
   public contextMenuPosition = { x: '0px', y: '0px' };
+  private gridSearchServiceSubscription: Subscription;
+  // TODO: Rename and use a different service for the below subscription declaration
+  private configurationServiceSubscription: Subscription;
 
   constructor(private loggingService: LoggingService, private configurationService: ConfigurationService,
               private gridSearchService: GridSearchService, private usageService: UsageService)
@@ -50,7 +54,8 @@ export class MainGridComponent implements OnInit, OnDestroy
       }
     };
 
-    this.configurationService.serviceUpdateSubject.subscribe((serviceUpdate: ServiceUpdate) =>
+    // TODO: Rename and use a different subscription variable name for the below subscription
+    this.configurationServiceSubscription = this.configurationService.serviceUpdateSubject.subscribe((serviceUpdate: ServiceUpdate) =>
     {
       if(serviceUpdate  === ServiceUpdate.REFRESH && this.configurationsGridOptions.api)
       {
@@ -58,7 +63,7 @@ export class MainGridComponent implements OnInit, OnDestroy
       }
     });
 
-    this.gridSearchService.gridSearchTextSubject.subscribe((gridSearchTextValue) =>
+    this.gridSearchServiceSubscription = this.gridSearchService.gridSearchTextSubject.subscribe((gridSearchTextValue) =>
     {
       if(this.configurationsGridOptions.api)
         this.configurationsGridOptions.api.setQuickFilter(gridSearchTextValue);
@@ -190,7 +195,7 @@ export class MainGridComponent implements OnInit, OnDestroy
 
   public onGridReady(event): void
   {
-
+    this.refreshGrid();
   }
 
   ngOnInit(): void
@@ -199,9 +204,10 @@ export class MainGridComponent implements OnInit, OnDestroy
 
   ngOnDestroy(): void
   {
-    this.log("Closing two subscriptions in onDestroy.", LogLevel.DEBUG);
-    this.configurationService.serviceUpdateSubject.unsubscribe();
-    this.gridSearchService.gridSearchTextSubject.unsubscribe();
+    this.log("Performing unsubscribe on existing two subscriptions in the onDestroy hook method.", LogLevel.DEBUG);
+    this.gridSearchServiceSubscription.unsubscribe();
+    // TODO: Rename and use a different service subscription below
+    this.configurationServiceSubscription.unsubscribe();
   }
 
   public editConfiguration(): void

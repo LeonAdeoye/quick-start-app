@@ -14,10 +14,12 @@ import { Constants } from "./models/constants";
 })
 export class AppComponent
 {
-  private isDetailPanelVisibleFlag: boolean = false;
+  private isDetailPanelVisibleFlag = false;
   public appName: string = Constants.APP_NAME;
-
-  configuration : Configuration;
+  public configuration: Configuration;
+  // TODO Add or remove new tabs here
+  public tabs = ["Configurations", "Users"];
+  public selectedTab = "Configurations";
 
   public constructor(private bootStrapService: BootstrapService, private loggingService: LoggingService, private configurationService: ConfigurationService)
   {
@@ -59,5 +61,10 @@ export class AppComponent
     this.log(`Cloning selected configuration ID: ${JSON.stringify(configuration)}`, LogLevel.DEBUG);
     this.configuration = configuration;
     this.toggleDetailPanelVisibility();
+  }
+
+  public onSelect(selectedTab): void
+  {
+    this.selectedTab = selectedTab;
   }
 }

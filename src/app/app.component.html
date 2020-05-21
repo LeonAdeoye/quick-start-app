@@ -1,9 +1,23 @@
 <div>
   <app-main-header></app-main-header>
+  <div class="tab-background">
+    <ul class="nav nav-tabs">
+      <li class="btn btn-default tab-button" *ngFor="let tab of tabs" [class.active]="tab === selectedTab" (click)="onSelect(tab)">
+        <span>{{tab}}</span>
+      </li>
+    </ul>
+  </div>
+  <!--TODO: Remove this hidden panel or use-->
   <div class="detail-panel" *ngIf="isDetailPanelVisible()">
     <app-detail [configuration]="configuration" (closePanelEventEmitter)="toggleDetailPanelVisibility()"></app-detail>
   </div>
-  <div class="main-grid" [ngClass]="isDetailPanelVisible() ? 'detail-panel-displayed-above' : 'detail-panel-hidden-above'">
-    <app-main-grid></app-main-grid>
+  <!--TODO: rename this tab-->
+  <div class="tab-view" *ngIf="selectedTab === 'Configurations'">
+    <div class="main-grid" [ngClass]="isDetailPanelVisible() ? 'detail-panel-displayed-above' : 'detail-panel-hidden-above'">
+      <app-main-grid></app-main-grid>
+    </div>
+  </div>
+  <div class="tab-view" *ngIf="selectedTab === 'Users'">
+    <!--TODO: Add another grid here-->
   </div>
 </div>
