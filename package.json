@@ -27,7 +27,7 @@
     "ag-grid-angular": "^22.1.1",
     "ag-grid-community": "^22.1.1",
     "bootstrap": "^4.5.0",
-    "electron": "^8.0.1",
+    "electron": "^18.3.7",
     "json2typescript": "^1.2.3",
     "lodash": "^4.17.15",
     "log4javascript": "^1.4.15",
